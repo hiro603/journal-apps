@@ -1,5 +1,7 @@
 # 食事日記
 
+[![CI](https://github.com/hiro603/meal-diary/actions/workflows/ci.yml/badge.svg)](https://github.com/hiro603/meal-diary/actions/workflows/ci.yml)
+
 食べたものを写真で残し、その日に「食べすぎたか」を ○ / × で自分で付ける、スマホ向けの日記アプリです。
 記録は端末内（IndexedDB）にだけ保存し、サーバーには送りません。ホーム画面に追加してアプリのように使えます（PWA）。
 
@@ -87,6 +89,7 @@ npm install
 npm run dev        # http://localhost:3000
 npm run dev:lan    # 同じ Wi-Fi のスマホから http://<MacのIP>:3000 で開く
 npm test           # Vitest（日付計算・Repository・画像の寸法計算）
+npm run typecheck  # ルートの型を生成してから tsc -b
 npm run build
 ```
 
