@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { addDays, formatDateLabel } from "@/lib/date";
-import { useToday } from "@/lib/useToday";
+import { addDays, formatDateLabel } from "../lib/date";
+import { useToday } from "../lib/useToday";
 import styles from "./DayNav.module.scss";
 
 const hrefFor = (date: string, today: string | null) => (date === today ? "/" : `/day/${date}`);

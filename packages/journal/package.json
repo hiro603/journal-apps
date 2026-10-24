@@ -1,0 +1,27 @@
+{
+  "name": "@journal-apps/journal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit -p .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "dexie": "^4.4.7",
+    "dexie-react-hooks": "^4.4.0"
+  },
+  "peerDependencies": {
+    "next": "16.4.3",
+    "react": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/react": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.3",
+    "fake-indexeddb": "^6.2.6",
+    "typescript": "^5",
+    "vitest": "^5.0.5"
+  }
+}

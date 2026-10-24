@@ -1,7 +1,7 @@
 "use client";
 
 import { MealDayScreen } from "@/meal/components/MealDayScreen";
-import { useToday } from "@/lib/useToday";
+import { useToday } from "@journal-apps/journal/lib/useToday";
 
 export default function TodayPage() {
   const today = useToday();

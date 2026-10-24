@@ -33,7 +33,7 @@
 
 ### 記録の保存・表示を、ほかのアプリに流用できる形にした
 
-同じ仕組みで「釣果記録」などの別アプリを作れるよう、汎用的な部分（`src/journal/`）と食事日記に固有の部分（`src/meal/`）を分けています。
+同じ仕組みで「釣果記録」などの別アプリを作れるよう、汎用的な部分（`packages/journal/`）と食事日記に固有の部分（`apps/meal/`）を分け、1つのリポジトリで複数のアプリを管理する構成（npm workspaces）にしています。
 
 - 記録は `Entry<TFields>` 型で表し、アプリ固有の項目は型引数で渡します。食事日記では `{ overate: boolean | null }` です
 - カレンダーの部品は「食べすぎ」を知りません。各日に付ける印（○×）は、アプリ側が `getBadge` 関数で渡します
@@ -73,23 +73,24 @@
 ## ディレクトリ構成
 
 ```
-src/
+packages/journal/        # 汎用層：型、Repository、Dexie の実装、フック、部品、日付・画像処理
+apps/meal/src/
 ├─ app/                  # ルーティング（今日 / 日付指定 / カレンダー）、manifest
 ├─ components/           # タブバーなど、アプリ全体で使う部品
-├─ journal/              # 汎用層：型、Repository、Dexie の実装、フック、部品
 ├─ meal/                 # 食事日記に固有の部分：項目の型、○× の切り替え、画面
-├─ lib/                  # 日付、画像処理、ID 生成
 └─ styles/tokens/        # デザイントークン（primitive / semantic）
 ```
+
+共通の部品は semantic トークン（CSS 変数）だけを参照しているので、アプリごとにトークンの値を変えれば、同じ部品のまま見た目を変えられます。
 
 ## 開発
 
 ```bash
-npm install
-npm run dev        # http://localhost:3000
-npm run dev:lan    # 同じ Wi-Fi のスマホから http://<MacのIP>:3000 で開く
-npm test           # Vitest（日付計算・Repository・画像の寸法計算）
-npm run typecheck  # ルートの型を生成してから tsc -b
+npm install                                  # リポジトリ直下で実行（全ワークスペースが入る）
+npm run dev:meal                             # http://localhost:3000
+npm run dev:lan --workspace=apps/meal        # 同じ Wi-Fi のスマホから http://<MacのIP>:3000 で開く
+npm test                                     # Vitest（日付計算・Repository・画像の寸法計算）
+npm run typecheck                            # 各ワークスペースの型チェック
 npm run build
 ```
 

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { isDateKey } from "@/lib/date";
+import { isDateKey } from "@journal-apps/journal/lib/date";
 import { MealDayScreen } from "@/meal/components/MealDayScreen";
 
 async function DayFromParams({ params }: Pick<PageProps<"/day/[date]">, "params">) {

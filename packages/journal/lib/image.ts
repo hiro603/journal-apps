@@ -1,4 +1,4 @@
-import type { NewPhoto } from "@/journal/types";
+import type { NewPhoto } from "../types";
 
 const IMAGE_MAX_EDGE = 1200;
 const THUMB_MAX_EDGE = 240;

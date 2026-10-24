@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { DayNav } from "@/journal/components/DayNav";
-import { NoteField } from "@/journal/components/NoteField";
-import { PhotoGrid } from "@/journal/components/PhotoGrid";
-import { PhotoPicker } from "@/journal/components/PhotoPicker";
-import { useDailyEntry } from "@/journal/hooks/useDailyEntry";
+import { DayNav } from "@journal-apps/journal/components/DayNav";
+import { NoteField } from "@journal-apps/journal/components/NoteField";
+import { PhotoGrid } from "@journal-apps/journal/components/PhotoGrid";
+import { PhotoPicker } from "@journal-apps/journal/components/PhotoPicker";
+import { useDailyEntry } from "@journal-apps/journal/hooks/useDailyEntry";
 import { initialMealFields } from "../fields";
 import { mealRepository } from "../repository";
 import { OverateToggle } from "./OverateToggle";

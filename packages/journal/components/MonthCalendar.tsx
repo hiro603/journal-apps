@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { addMonths, formatDateLabel, formatMonthLabel, monthGrid } from "@/lib/date";
+import { addMonths, formatDateLabel, formatMonthLabel, monthGrid } from "../lib/date";
 import type { DaySummary } from "../hooks/useMonthEntries";
 import type { Entry } from "../types";
 import { BlobImage } from "./BlobImage";

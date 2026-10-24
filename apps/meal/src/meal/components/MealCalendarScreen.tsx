@@ -1,11 +1,11 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { MonthCalendar, type DayBadge } from "@/journal/components/MonthCalendar";
-import { useMonthEntries } from "@/journal/hooks/useMonthEntries";
-import type { Entry } from "@/journal/types";
-import { isMonthKey, toMonthKey } from "@/lib/date";
-import { useToday } from "@/lib/useToday";
+import { MonthCalendar, type DayBadge } from "@journal-apps/journal/components/MonthCalendar";
+import { useMonthEntries } from "@journal-apps/journal/hooks/useMonthEntries";
+import type { Entry } from "@journal-apps/journal/types";
+import { isMonthKey, toMonthKey } from "@journal-apps/journal/lib/date";
+import { useToday } from "@journal-apps/journal/lib/useToday";
 import { describeOverate, type MealFields } from "../fields";
 import { mealRepository } from "../repository";
 import styles from "./MealCalendarScreen.module.scss";

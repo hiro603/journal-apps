@@ -1,6 +1,6 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { useRef } from "react";
-import { processImage } from "@/lib/image";
+import { processImage } from "../lib/image";
 import type { JournalRepository } from "../repository";
 import type { Entry, Photo } from "../types";
 

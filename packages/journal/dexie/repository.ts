@@ -1,4 +1,4 @@
-import { createId } from "@/lib/id";
+import { createId } from "../lib/id";
 import type { JournalRepository } from "../repository";
 import type { Entry, Photo } from "../types";
 import type { JournalDB } from "./db";
