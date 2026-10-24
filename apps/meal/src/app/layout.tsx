@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
-import { InstallHint } from "@/components/InstallHint/InstallHint";
-import { StoragePersistence } from "@/components/StoragePersistence";
-import { TabBar } from "@/components/TabBar/TabBar";
+import { InstallHint } from "@journal-apps/journal/components/InstallHint/InstallHint";
+import { StoragePersistence } from "@journal-apps/journal/components/StoragePersistence";
+import { TabBar } from "@journal-apps/journal/components/TabBar/TabBar";
 import "@/styles/globals.scss";
 import styles from "./layout.module.scss";
 
