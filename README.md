@@ -1,6 +1,6 @@
 # 食事日記
 
-[![CI](https://github.com/hiro603/meal-diary/actions/workflows/ci.yml/badge.svg)](https://github.com/hiro603/meal-diary/actions/workflows/ci.yml)
+[![CI](https://github.com/hiro603/journal-apps/actions/workflows/ci.yml/badge.svg)](https://github.com/hiro603/journal-apps/actions/workflows/ci.yml)
 
 食べたものを写真で残し、その日に「食べすぎたか」を ○ / × で自分で付ける、スマホ向けの日記アプリです。
 記録は端末内（IndexedDB）にだけ保存し、サーバーには送りません。ホーム画面に追加してアプリのように使えます（PWA）。
