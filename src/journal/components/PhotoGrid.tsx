@@ -15,7 +15,8 @@ export function PhotoGrid({ photos, onRemove }: Props) {
     <ul className={styles.grid}>
       {photos.map((photo, i) => (
         <li key={photo.id} className={styles.item}>
-          <BlobImage blob={photo.thumb} alt={`写真${i + 1}`} className={styles.image} />
+          {/* サムネイル(長辺240px)は正方形に切り抜くと高解像度の画面でぼやけるため、本体を表示する */}
+          <BlobImage blob={photo.image} alt={`写真${i + 1}`} className={styles.image} />
           <button
             type="button"
             className={styles.remove}
