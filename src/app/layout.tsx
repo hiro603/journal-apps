@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
+import { InstallHint } from "@/components/InstallHint/InstallHint";
 import { StoragePersistence } from "@/components/StoragePersistence";
 import { TabBar } from "@/components/TabBar/TabBar";
 import "@/styles/globals.scss";
@@ -25,7 +26,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="ja">
       <body>
         <StoragePersistence />
-        <main className={styles.main}>{children}</main>
+        <main className={styles.main}>
+          <InstallHint />
+          {children}
+        </main>
         {/* /day/[date] は動的ルートなので、usePathname を使うタブバーは Suspense の内側に置く */}
         <Suspense>
           <TabBar />
