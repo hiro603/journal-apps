@@ -1,0 +1,15 @@
+.notFound {
+  display: grid;
+  gap: var(--space-md);
+  justify-items: center;
+  padding-top: var(--space-xl);
+}
+
+.title {
+  font-size: var(--font-size-title);
+}
+
+.link {
+  color: var(--color-primary);
+  font-weight: 600;
+}

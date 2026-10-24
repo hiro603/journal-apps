@@ -1,0 +1,30 @@
+.nav {
+  display: grid;
+  grid-template-columns: var(--size-tap) 1fr var(--size-tap);
+  align-items: center;
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  height: var(--size-tap);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-display);
+  text-decoration: none;
+}
+
+.title {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-title);
+}
+
+.today {
+  padding: 0 var(--space-sm);
+  border-radius: var(--radius-pill);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: var(--font-size-caption);
+}

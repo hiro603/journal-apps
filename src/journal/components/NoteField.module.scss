@@ -1,0 +1,32 @@
+.field {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.label {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+// iOS は 16px 未満の入力欄にフォーカスすると画面を拡大するため、本文サイズを下回らせない
+.textarea {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--font-size-body);
+  resize: vertical;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -1px;
+  }
+}

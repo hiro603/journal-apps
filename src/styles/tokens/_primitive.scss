@@ -1,0 +1,37 @@
+// 生の値。コンポーネントからは直接参照せず、_semantic.scss 経由で使う
+
+$color-white: #ffffff;
+$color-neutral-50: #faf8f5;
+$color-neutral-100: #f2eee8;
+$color-neutral-200: #e4ded5;
+$color-neutral-400: #a69d91;
+$color-neutral-600: #6b6359;
+$color-neutral-800: #3a342d;
+$color-neutral-900: #221e1a;
+
+$color-orange-100: #fde9d9;
+// 600 以下は白地で 4.5:1 に届かないため、文字・ボタンには 700 を使う
+$color-orange-700: #ad4e16;
+
+$color-green-100: #dcf1e2;
+$color-green-700: #26763f;
+
+$color-red-100: #fbe0de;
+$color-red-700: #b3312a;
+
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-6: 1.5rem;
+$space-8: 2rem;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
+
+$radius-sm: 0.5rem;
+$radius-md: 0.75rem;
+$radius-full: 9999px;

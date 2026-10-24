@@ -1,0 +1,40 @@
+@use "primitive" as p;
+
+// 用途名のトークン。CSS 変数にしておくとダークモードは :root の差し替えだけで済む
+:root {
+  --color-bg: #{p.$color-neutral-50};
+  --color-surface: #{p.$color-white};
+  --color-border: #{p.$color-neutral-200};
+  --color-text: #{p.$color-neutral-900};
+  --color-text-muted: #{p.$color-neutral-600};
+  --color-text-subtle: #{p.$color-neutral-400};
+  --color-primary: #{p.$color-orange-700};
+  --color-primary-soft: #{p.$color-orange-100};
+  --color-ok: #{p.$color-green-700};
+  --color-ok-soft: #{p.$color-green-100};
+  --color-over: #{p.$color-red-700};
+  --color-over-soft: #{p.$color-red-100};
+
+  --space-xs: #{p.$space-1};
+  --space-sm: #{p.$space-2};
+  --space-md: #{p.$space-4};
+  --space-lg: #{p.$space-6};
+  --space-xl: #{p.$space-8};
+  --space-gutter: #{p.$space-4};
+
+  --font-size-caption: #{p.$font-size-xs};
+  --font-size-small: #{p.$font-size-sm};
+  --font-size-body: #{p.$font-size-md};
+  --font-size-title: #{p.$font-size-lg};
+  --font-size-display: #{p.$font-size-xl};
+
+  --radius-control: #{p.$radius-sm};
+  --radius-card: #{p.$radius-md};
+  --radius-pill: #{p.$radius-full};
+
+  // 指で押しやすい最小サイズ（Apple HIG の 44pt 基準）
+  --size-tap: 2.75rem;
+  --content-max-width: 40rem;
+  // タブバーの高さ（リンクの高さ + 上の線 + iPhone のホームバー分）。操作バーをこの上に留める
+  --size-tabbar: calc(var(--size-tap) + 1px + env(safe-area-inset-bottom));
+}

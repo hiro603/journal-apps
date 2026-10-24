@@ -1,0 +1,80 @@
+.toggle {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  margin-bottom: var(--space-xs);
+  padding: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+}
+
+.option {
+  --tone: var(--color-text-muted);
+  --tone-soft: var(--color-bg);
+
+  display: grid;
+  place-items: center;
+  min-height: calc(var(--size-tap) * 1.5);
+  padding: var(--space-xs);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+
+  &:has(:checked) {
+    border-color: var(--tone);
+    background: var(--tone-soft);
+    color: var(--tone);
+  }
+
+  &:has(:focus-visible) {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.over {
+  --tone: var(--color-over);
+  --tone-soft: var(--color-over-soft);
+}
+
+.ok {
+  --tone: var(--color-ok);
+  --tone-soft: var(--color-ok-soft);
+}
+
+.none {
+  --tone: var(--color-text-muted);
+  --tone-soft: var(--color-bg);
+}
+
+// 見た目からは隠し、フォーカスと読み上げは残す
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.mark {
+  font-size: var(--font-size-display);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.label {
+  font-size: var(--font-size-caption);
+}

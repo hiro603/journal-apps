@@ -1,0 +1,58 @@
+.empty {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 3 / 1;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-card);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-control);
+  background: var(--color-border);
+}
+
+// 見た目は小さく、押せる範囲は --size-tap を確保する
+.remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: var(--size-tap);
+  height: var(--size-tap);
+  padding: var(--space-xs);
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.removeMark {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius-pill);
+  background: rgb(0 0 0 / 0.55);
+  color: var(--color-surface);
+  font-size: var(--font-size-small);
+  line-height: 1;
+}

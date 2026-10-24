@@ -1,0 +1,36 @@
+// ページ全体を普通にスクロールさせ、sticky で下に留める。
+// main の中だけでスクロールさせると、iOS でキーボードを閉じた後に画面がずれたまま戻らない
+.tabBar {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  // iPhone のホームバーと重ならないよう下に逃がす
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--size-tap);
+  padding: var(--space-sm);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  text-decoration: none;
+
+  &[aria-current="page"] {
+    color: var(--color-primary);
+  }
+}

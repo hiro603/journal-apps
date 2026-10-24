@@ -1,0 +1,106 @@
+.calendar {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: var(--size-tap) 1fr var(--size-tap);
+  align-items: center;
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  height: var(--size-tap);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-display);
+  text-decoration: none;
+}
+
+.title {
+  text-align: center;
+  font-size: var(--font-size-title);
+}
+
+.weekdays,
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-xs);
+}
+
+.weekdays {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+  text-align: center;
+}
+
+.grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.day {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+
+  // 写真に隠れないよう、今日の枠は写真より手前に重ねる
+  &[aria-current="date"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--color-primary);
+    border-radius: inherit;
+  }
+}
+
+.future {
+  background: none;
+  color: var(--color-text-subtle);
+}
+
+.cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.number {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+// 写真の上でも日付が読めるよう白文字に影を付ける
+.hasCover .number {
+  color: var(--color-surface);
+  text-shadow: 0 0 3px rgb(0 0 0 / 0.8);
+}
+
+.badge {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  display: grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-size: var(--font-size-caption);
+  font-weight: 700;
+  line-height: 1;
+}
