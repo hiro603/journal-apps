@@ -1,8 +1,8 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { useRef } from "react";
-import { processImage } from "../lib/image";
 import type { JournalRepository } from "../repository";
 import type { Entry, Photo } from "../types";
+import { addPhotosTo } from "./addPhotosTo";
 
 const noPhotos: Photo[] = [];
 
@@ -24,18 +24,9 @@ export function useDailyEntry<TFields>(repo: JournalRepository<TFields>, date: s
     return creating.current.promise;
   }
 
-  // 読み込めなかった枚数を返す（PC の Chrome で HEIC を選んだときなど）
   async function addPhotos(files: File[]): Promise<number> {
     const target = await ensureEntry();
-    let failed = 0;
-    for (const file of files) {
-      try {
-        await repo.addPhoto(target.id, await processImage(file));
-      } catch {
-        failed++;
-      }
-    }
-    return failed;
+    return addPhotosTo(repo, target.id, files);
   }
 
   async function updateFields(fields: TFields) {

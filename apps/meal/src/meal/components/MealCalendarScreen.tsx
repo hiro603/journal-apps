@@ -10,7 +10,8 @@ import { describeOverate, type MealFields } from "../fields";
 import { mealRepository } from "../repository";
 import styles from "./MealCalendarScreen.module.scss";
 
-function getMealBadge(entry: Entry<MealFields>): DayBadge | null {
+// 食事日記は1日1件なので、その日の最初の記録を見る
+function getMealBadge([entry]: Entry<MealFields>[]): DayBadge | null {
   const { overate } = entry.fields;
   if (overate === null) return null;
   return { ...describeOverate(overate), className: overate ? styles.over : styles.ok };

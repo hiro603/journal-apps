@@ -36,6 +36,35 @@ describe("記録", () => {
     expect(dates).toEqual(["2026-10-01", "2026-10-31"]);
   });
 
+  it("ID で1件を引け、無い ID は undefined になる", async () => {
+    const created = await repo.create({ date: "2026-10-24", fields: { score: 1 } });
+
+    expect(await repo.findById(created.id)).toEqual(created);
+    expect(await repo.findById("missing")).toBeUndefined();
+  });
+
+  it("同じ日に複数件を作ると、日付で作成順に引ける", async () => {
+    const first = await repo.create({ date: "2026-10-24", fields: { score: 1 } });
+    await new Promise((r) => setTimeout(r, 2));
+    const second = await repo.create({ date: "2026-10-24", fields: { score: 2 } });
+
+    expect((await repo.findByDate("2026-10-24")).map((e) => e.id)).toEqual([first.id, second.id]);
+  });
+
+  it("削除すると記録とその写真が消え、ほかの記録の写真は残る", async () => {
+    const target = await repo.create({ date: "2026-10-24", fields: { score: null } });
+    const other = await repo.create({ date: "2026-10-24", fields: { score: null } });
+    await repo.addPhoto(target.id, photoInput());
+    await repo.addPhoto(target.id, photoInput());
+    const kept = await repo.addPhoto(other.id, photoInput());
+
+    await repo.remove(target.id);
+
+    expect(await repo.findById(target.id)).toBeUndefined();
+    expect(await repo.listPhotos(target.id)).toEqual([]);
+    expect((await repo.listPhotos(other.id)).map((p) => p.id)).toEqual([kept.id]);
+  });
+
   it("更新するとメモと項目が変わり updatedAt が進む", async () => {
     const created = await repo.create({ date: "2026-10-24", fields: { score: null } });
     await new Promise((r) => setTimeout(r, 2));

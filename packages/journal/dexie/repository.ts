@@ -5,6 +5,10 @@ import type { JournalDB } from "./db";
 
 export function createDexieRepository<TFields>(db: JournalDB<TFields>): JournalRepository<TFields> {
   return {
+    findById(id) {
+      return db.entries.get(id);
+    },
+
     findByDate(date) {
       return db.entries.where("date").equals(date).sortBy("createdAt");
     },
@@ -32,6 +36,14 @@ export function createDexieRepository<TFields>(db: JournalDB<TFields>): JournalR
       // オブジェクト形式は TFields がジェネリックだと型解決できないため、関数形式で書き換える
       await db.entries.update(id, (entry) => {
         Object.assign(entry, patch, { updatedAt: Date.now() });
+      });
+    },
+
+    // 途中で失敗して写真だけ残る、ということがないよう1つのトランザクションで消す
+    async remove(id) {
+      await db.transaction("rw", db.entries, db.photos, async () => {
+        await db.photos.where("entryId").equals(id).delete();
+        await db.entries.delete(id);
       });
     },
 

@@ -14,7 +14,8 @@ type Props<TFields> = {
   month: string;
   today: string;
   days: Map<string, DaySummary<TFields>>;
-  getBadge: (entry: Entry<TFields>) => DayBadge | null;
+  // その日の記録をまとめて受け取る（釣果ノートのように1日に複数件ある場合も1つの印にする）
+  getBadge: (entries: Entry<TFields>[]) => DayBadge | null;
   monthHref: (month: string) => string;
   dayHref: (date: string) => string;
 };
@@ -64,7 +65,7 @@ export function MonthCalendar<TFields>({ month, today, days, getBadge, monthHref
           }
 
           const summary = days.get(date);
-          const badge = summary ? getBadge(summary.entry) : null;
+          const badge = summary ? getBadge(summary.entries) : null;
           const label = [formatDateLabel(date), badge?.label, summary?.cover && "写真あり"].filter(Boolean).join(" ");
 
           return (
