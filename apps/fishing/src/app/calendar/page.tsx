@@ -1,4 +1,11 @@
-// 月カレンダー（中身はステップ5で作る）
+import { Suspense } from "react";
+import { FishingCalendarScreen } from "@/fishing/components/FishingCalendarScreen";
+
+// useSearchParams はビルド時に値が決まらないため Suspense の内側に置く
 export default function CalendarPage() {
-  return <h1>カレンダー</h1>;
+  return (
+    <Suspense>
+      <FishingCalendarScreen />
+    </Suspense>
+  );
 }

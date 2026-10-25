@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { Entry } from "@journal-apps/journal/types";
 import { initialFishingFields, type FishingFields } from "./fields";
-import { collectSuggestions, describeCatches, sortTrips, toTimeText, totalCount } from "./trips";
+import { collectSuggestions, dayTotal, describeCatches, sortTrips, toTimeText, totalCount } from "./trips";
 
 const trip = (id: string, fields: Partial<FishingFields>, createdAt = 0, updatedAt = createdAt): Entry<FishingFields> => ({
   id,
@@ -60,5 +60,15 @@ describe("collectSuggestions", () => {
 describe("toTimeText", () => {
   it("時と分を2桁で返す", () => {
     expect(toTimeText(new Date(2026, 9, 25, 5, 3))).toBe("05:03");
+  });
+});
+
+describe("dayTotal", () => {
+  it("その日の釣行の匹数をすべて足し、釣果が無ければ0", () => {
+    const morning = trip("m", { catches: [{ species: "アジ", count: 12, maxSizeCm: null }, { species: "サバ", count: 3, maxSizeCm: null }] });
+    const evening = trip("e", { catches: [{ species: "アジ", count: 5, maxSizeCm: 22 }] });
+
+    expect(dayTotal([morning, evening])).toBe(20);
+    expect(dayTotal([trip("empty", {})])).toBe(0);
   });
 });

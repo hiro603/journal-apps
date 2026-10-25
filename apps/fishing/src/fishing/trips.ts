@@ -27,6 +27,11 @@ export function totalCount(catches: Catch[]): number {
   return catches.reduce((sum, c) => sum + c.count, 0);
 }
 
+// その日の釣行すべての合計匹数（カレンダーの印に出す）
+export function dayTotal(trips: Trip[]): number {
+  return trips.reduce((sum, t) => sum + totalCount(t.fields.catches), 0);
+}
+
 // 一覧に出す釣果の要約。例: "アジ 12・サバ 3"
 export function describeCatches(catches: Catch[]): string {
   const caught = catches.filter((c) => c.species !== "" && c.count > 0);
