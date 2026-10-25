@@ -29,7 +29,7 @@ export function useDebouncedSave<T>(save: (value: T) => void, delayMs = 500) {
     };
   }, [flush]);
 
-  return useCallback(
+  const schedule = useCallback(
     (value: T) => {
       pending.current = { value };
       clearTimeout(timer.current);
@@ -37,4 +37,6 @@ export function useDebouncedSave<T>(save: (value: T) => void, delayMs = 500) {
     },
     [flush, delayMs],
   );
+
+  return { schedule, flush };
 }

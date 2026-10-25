@@ -35,6 +35,10 @@ describe("describeCatches / totalCount", () => {
     expect(totalCount(catches)).toBe(15);
   });
 
+  it("魚種が空の行は合計に数えない", () => {
+    expect(totalCount([{ species: "", count: 1, maxSizeCm: null }, { species: "アジ", count: 2, maxSizeCm: null }])).toBe(2);
+  });
+
   it("釣果が無い、または 0 匹・魚種未入力だけなら「釣果なし」", () => {
     expect(describeCatches([])).toBe("釣果なし");
     expect(describeCatches([{ species: "アジ", count: 0, maxSizeCm: null }, { species: "", count: 2, maxSizeCm: null }])).toBe("釣果なし");

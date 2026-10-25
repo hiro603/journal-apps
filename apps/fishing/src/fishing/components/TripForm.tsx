@@ -16,7 +16,7 @@ const newCatch: CatchDraft = { species: "", count: "1", maxSizeCm: "" };
 export function TripForm({ initial, onSave }: Props) {
   const id = useId();
   const [draft, setDraft] = useState(() => toDraft(initial));
-  const save = useDebouncedSave((value: TripDraft) => onSave(fromDraft(value)));
+  const { schedule: save } = useDebouncedSave((value: TripDraft) => onSave(fromDraft(value)));
   const suggestions = useSuggestions();
 
   function change(next: TripDraft) {

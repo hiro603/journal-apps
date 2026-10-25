@@ -9,9 +9,12 @@ export type TripDraft = Omit<FishingFields, "windSpeed" | "catches"> & {
 
 const toText = (n: number | null) => (n === null ? "" : String(n));
 
+const MAX_COUNT = 9999;
+
+// 0以上の数字と小数点だけを受け付ける（"1e400" や "0x10"、負の値は数値にしない）
 function toNumber(text: string): number | null {
-  const n = Number(text);
-  return text.trim() === "" || Number.isNaN(n) ? null : n;
+  const trimmed = text.trim();
+  return /^(\d+\.?\d*|\.\d+)$/.test(trimmed) ? Number(trimmed) : null;
 }
 
 export function toDraft(fields: FishingFields): TripDraft {
@@ -30,7 +33,7 @@ export function fromDraft(draft: TripDraft): FishingFields {
     windSpeed: toNumber(draft.windSpeed),
     catches: draft.catches.map((c) => ({
       species: c.species.trim(),
-      count: Math.max(0, Math.trunc(toNumber(c.count) ?? 0)),
+      count: Math.min(MAX_COUNT, Math.trunc(toNumber(c.count) ?? 0)),
       maxSizeCm: toNumber(c.maxSizeCm),
     })),
   };

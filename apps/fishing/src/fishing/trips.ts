@@ -23,8 +23,9 @@ export function sortTrips<T extends { entry: Trip }>(items: T[]): T[] {
   });
 }
 
+// 魚種が空の行は数えない（一覧の要約と揃える）
 export function totalCount(catches: Catch[]): number {
-  return catches.reduce((sum, c) => sum + c.count, 0);
+  return catches.reduce((sum, c) => (c.species === "" ? sum : sum + c.count), 0);
 }
 
 // その日の釣行すべての合計匹数（カレンダーの印に出す）

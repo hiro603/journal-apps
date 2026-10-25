@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useTransition } from "react";
 import { BlobImage } from "@journal-apps/journal/components/BlobImage";
 import { DayNav } from "@journal-apps/journal/components/DayNav";
 import { useEntriesByDate } from "@journal-apps/journal/hooks/useEntriesByDate";
@@ -18,14 +18,16 @@ export function FishingDayScreen({ date }: { date: string }) {
   const trips = useEntriesByDate(fishingRepository, date);
   const today = useToday();
   const router = useRouter();
-  const [isCreating, setIsCreating] = useState(false);
+  // 作成から画面の移動が終わるまでを1つのトランジションにし、その間はボタンを押せなくする（電波が弱いときの連打で空の釣行が増えないように）
+  const [isCreating, startCreating] = useTransition();
 
-  async function addTrip() {
-    setIsCreating(true);
-    // 今日の釣行なら、開始時刻に今の時刻を入れておく
-    const startTime = date === today ? toTimeText(new Date()) : null;
-    const trip = await fishingRepository.create({ date, fields: { ...initialFishingFields, startTime } });
-    router.push(`/trip/${trip.id}`);
+  function addTrip() {
+    startCreating(async () => {
+      // 今日の釣行なら、開始時刻に今の時刻を入れておく
+      const startTime = date === today ? toTimeText(new Date()) : null;
+      const trip = await fishingRepository.create({ date, fields: { ...initialFishingFields, startTime } });
+      router.push(`/trip/${trip.id}`);
+    });
   }
 
   return (

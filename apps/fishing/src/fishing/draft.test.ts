@@ -27,6 +27,27 @@ describe("toDraft / fromDraft", () => {
     expect(fromDraft(draft)).toMatchObject({ windSpeed: null, catches: [{ count: 0, maxSizeCm: null }] });
   });
 
+  it("指数表記・16進数・負の値は数値にせず、匹数は上限 9999 にそろえる", () => {
+    const draft: TripDraft = {
+      ...toDraft(fields),
+      windSpeed: "-2",
+      catches: [
+        { species: "イワシ", count: "1e400", maxSizeCm: "Infinity" },
+        { species: "アジ", count: "0x10", maxSizeCm: "-5" },
+        { species: "サバ", count: "99999999999999999999", maxSizeCm: "23." },
+      ],
+    };
+
+    expect(fromDraft(draft)).toMatchObject({
+      windSpeed: null,
+      catches: [
+        { count: 0, maxSizeCm: null },
+        { count: 0, maxSizeCm: null },
+        { count: 9999, maxSizeCm: 23 },
+      ],
+    });
+  });
+
   it("文字の欄は前後の空白を取る", () => {
     const draft: TripDraft = { ...toDraft(fields), spot: " 〇〇港 ", tackle: " サビキ ", catches: [{ species: " アジ ", count: "1", maxSizeCm: "" }] };
 

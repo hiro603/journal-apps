@@ -1,32 +1,16 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useId, useState } from "react";
+import { useDebouncedSave } from "../hooks/useDebouncedSave";
 import styles from "./NoteField.module.scss";
-
-const SAVE_DELAY_MS = 500;
 
 type Props = { initialValue: string; onSave: (note: string) => void };
 
-// 入力が止まってから自動保存する。画面を離れるときは待たずに保存する
+// 入力が止まってから自動保存する。欄を離れたとき・画面を離れるとき・アプリが裏に回ったときは待たずに保存する
 export function NoteField({ initialValue, onSave }: Props) {
   const id = useId();
   const [value, setValue] = useState(initialValue);
-  const pending = useRef<string | null>(null);
-  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const onSaveRef = useRef(onSave);
-
-  useEffect(() => {
-    onSaveRef.current = onSave;
-  });
-
-  function flush() {
-    clearTimeout(timer.current);
-    if (pending.current === null) return;
-    onSaveRef.current(pending.current);
-    pending.current = null;
-  }
-
-  useEffect(() => flush, []);
+  const { schedule, flush } = useDebouncedSave(onSave);
 
   return (
     <div className={styles.field}>
@@ -41,9 +25,7 @@ export function NoteField({ initialValue, onSave }: Props) {
         placeholder="ひとこと（任意）"
         onChange={(e) => {
           setValue(e.target.value);
-          pending.current = e.target.value;
-          clearTimeout(timer.current);
-          timer.current = setTimeout(flush, SAVE_DELAY_MS);
+          schedule(e.target.value);
         }}
         onBlur={flush}
       />
