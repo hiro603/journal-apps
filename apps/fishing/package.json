@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start -p 3001",
     "lint": "eslint",
-    "typecheck": "next typegen && tsc -b"
+    "typecheck": "next typegen && tsc -b",
+    "test": "vitest run"
   },
   "dependencies": {
     "@journal-apps/journal": "*",
@@ -23,6 +24,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
     "sass": "^1.106.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^5.0.5"
   }
 }

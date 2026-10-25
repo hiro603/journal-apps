@@ -43,6 +43,13 @@ describe("記録", () => {
     expect(await repo.findById("missing")).toBeUndefined();
   });
 
+  it("全件を引ける", async () => {
+    await repo.create({ date: "2026-10-01", fields: { score: 1 } });
+    await repo.create({ date: "2026-11-01", fields: { score: 2 } });
+
+    expect((await repo.findAll()).map((e) => e.date).sort()).toEqual(["2026-10-01", "2026-11-01"]);
+  });
+
   it("同じ日に複数件を作ると、日付で作成順に引ける", async () => {
     const first = await repo.create({ date: "2026-10-24", fields: { score: 1 } });
     await new Promise((r) => setTimeout(r, 2));

@@ -5,6 +5,8 @@ export interface JournalRepository<TFields> {
   findById(id: string): Promise<Entry<TFields> | undefined>;
   findByDate(date: string): Promise<Entry<TFields>[]>;
   findByMonth(month: string): Promise<Entry<TFields>[]>;
+  // 入力の候補（過去の釣り場など）を作るために全件を引く
+  findAll(): Promise<Entry<TFields>[]>;
   create(input: NewEntry<TFields>): Promise<Entry<TFields>>;
   update(id: string, patch: EntryPatch<TFields>): Promise<void>;
   // 記録と、その記録の写真をまとめて消す

@@ -18,6 +18,10 @@ export function createDexieRepository<TFields>(db: JournalDB<TFields>): JournalR
       return db.entries.where("date").startsWith(`${month}-`).sortBy("date");
     },
 
+    findAll() {
+      return db.entries.toArray();
+    },
+
     async create(input) {
       const now = Date.now();
       const entry: Entry<TFields> = {

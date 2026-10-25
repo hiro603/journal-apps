@@ -5,11 +5,17 @@ import type { Entry, Photo } from "../types";
 // その日の記録（作成順）と、その日で最初の写真（表紙）
 export type DaySummary<TFields> = { entries: Entry<TFields>[]; cover: Photo | null };
 
-export function summarizeByDate<TFields>(entries: Entry<TFields>[], photos: Photo[]): Map<string, DaySummary<TFields>> {
+// 記録ごとの最初の写真
+export function firstPhotoByEntry(photos: Photo[]): Map<string, Photo> {
   const firstPhotoOf = new Map<string, Photo>();
   for (const photo of [...photos].sort((a, b) => a.createdAt - b.createdAt)) {
     if (!firstPhotoOf.has(photo.entryId)) firstPhotoOf.set(photo.entryId, photo);
   }
+  return firstPhotoOf;
+}
+
+export function summarizeByDate<TFields>(entries: Entry<TFields>[], photos: Photo[]): Map<string, DaySummary<TFields>> {
+  const firstPhotoOf = firstPhotoByEntry(photos);
 
   const days = new Map<string, DaySummary<TFields>>();
   for (const entry of [...entries].sort((a, b) => a.createdAt - b.createdAt)) {

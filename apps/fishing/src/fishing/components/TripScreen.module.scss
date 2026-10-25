@@ -1,0 +1,38 @@
+.header {
+  display: grid;
+  grid-template-columns: var(--size-tap) 1fr var(--size-tap);
+  align-items: center;
+}
+
+.back {
+  display: grid;
+  place-items: center;
+  height: var(--size-tap);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-display);
+  text-decoration: none;
+}
+
+.title {
+  text-align: center;
+  font-size: var(--font-size-title);
+}
+
+.remove {
+  justify-self: center;
+  min-height: var(--size-tap);
+  padding: 0 var(--space-md);
+  border: 0;
+  background: none;
+  color: var(--color-error);
+  font-size: var(--font-size-small);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.missing {
+  display: grid;
+  gap: var(--space-md);
+  justify-items: center;
+  padding-top: var(--space-xl);
+}

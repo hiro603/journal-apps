@@ -1,0 +1,89 @@
+.form {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.label {
+  padding: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+// iOS は 16px 未満の入力欄にフォーカスすると画面を拡大するため、本文サイズを下回らせない
+.input {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--size-tap);
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--font-size-body);
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -1px;
+  }
+}
+
+.catches {
+  display: grid;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+// 魚種 / 匹数 / 最大cm / 削除。320px 幅でも魚種の欄が潰れないよう、数値の欄は固定幅にする
+.catchHead,
+.catchRow {
+  display: grid;
+  grid-template-columns: 1fr 3.5rem 4.5rem var(--size-tap);
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.catchHead {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-caption);
+}
+
+.removeCatch {
+  width: var(--size-tap);
+  height: var(--size-tap);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-title);
+  cursor: pointer;
+}
+
+.addCatch {
+  min-height: var(--size-tap);
+  border: 1px dashed var(--color-primary);
+  border-radius: var(--radius-control);
+  background: none;
+  color: var(--color-primary);
+  font-weight: 600;
+  cursor: pointer;
+}

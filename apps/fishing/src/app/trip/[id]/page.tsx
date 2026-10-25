@@ -1,9 +1,10 @@
 import { Suspense } from "react";
+import { TripScreen } from "@/fishing/components/TripScreen";
 
-// 釣行の編集画面（中身はステップ4で作る）
 async function TripFromParams({ params }: Pick<PageProps<"/trip/[id]">, "params">) {
   const { id } = await params;
-  return <h1>釣行 {id}</h1>;
+  // 釣行ごとに画面を作り直し、保存待ちの入力が別の釣行に書き込まれないようにする
+  return <TripScreen key={id} id={id} />;
 }
 
 export default function TripPage({ params }: PageProps<"/trip/[id]">) {
