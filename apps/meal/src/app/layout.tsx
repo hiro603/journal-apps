@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
 import { InstallHint } from "@journal-apps/journal/components/InstallHint/InstallHint";
 import { StoragePersistence } from "@journal-apps/journal/components/StoragePersistence";
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Suspense>
           <TabBar />
         </Suspense>
+        <Analytics />
       </body>
     </html>
   );
